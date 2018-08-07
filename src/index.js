@@ -1,6 +1,13 @@
-import './css/body.css';
+import 'babel-polyfill';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 import './css/app.css';
 import './css/header.css';
+import App from './components/App.jsx';
+import store from './store';
 
-import App from './App.jsx';
-
+ReactDOM.render(
+  <App store={store} />,
+  document.getElementById('app'),
+);
