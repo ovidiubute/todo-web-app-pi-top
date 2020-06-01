@@ -6,14 +6,14 @@ This test is a part of our hiring process at pi-top for frontend positions. It s
 
 
 ## Summary
-The goal of this test is to make you code a small ReactJS app. We have prepared a skeleton app for you, but please change whatever you want (CSS files, HTML structure, JS structure...). We have provided an API for you to use as the backend for your app which is documented below.
+The goal of this test is to make you code a small ReactJS app. We have prepared a skeleton app for you, but please change whatever you want (file structure, build process, HTML, CSS...) or don't use it at all. We have provided an API for you to use as the backend for your app which is documented below and which you must use.
 
 The app will be a Todo list (sorry) with the following features:
 - **Todo List** - simple list of notes
 - **Todo Detail** - detail of a note
 - **Todo Creator** - ability to input new notes
 
-Show us what you can do in 6 hours tops :) Don't spend too much time on designing your app, our design team will hate it anyway.
+Show us what you can do in 6 hours tops.  Don't spend too much time on designing your app, our design team will hate it anyway :P
 
 **Bonus:** The user would also be able mark a Todo 'isDone' and have them displayed appropriately. Please code that only if you have extra time.
 
@@ -29,6 +29,7 @@ Show us what you can do in 6 hours tops :) Don't spend too much time on designin
 - Unit and integration tests
 - CSS modules or alternative
 - Modern react paradigms
+- Typing e.g. Typescript, prop-types, Flow
 - ... Impress us!
 
 
@@ -76,4 +77,4 @@ Clone this repository, create your own public repository, switch out the [remote
 
 We'll review it and get back to you in order to talk about your code!
 
-Contact us at careers@pi-top.com if you need more details.
+Contact us at support@pi-top.com if you need more details.
