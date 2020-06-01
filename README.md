@@ -42,9 +42,9 @@ yarn start
 
 ## API documentation
 ### Routes
-- **GET** - https://backend.pi-top.com/todo-test/v1/todos: list all todos. description and tags are not included
-- **GET** - https://backend.pi-top.com/todo-test/v1/todos/:id retrieve a specific todo details
-- **POST** - https://backend.pi-top.com/todo-test/v1/todos create a todo. You'll need to send a JSON in the request body:
+- **GET** - https://backend-test.pi-top.com/todo-test/v1/todos: list all todos. description and tags are not included
+- **GET** - https://backend-test.pi-top.com/todo-test/v1/todos/:id retrieve a specific todo details
+- **POST** - https://backend-test.pi-top.com/todo-test/v1/todos create a todo. You'll need to send a JSON in the request body:
 ```
 {
   title: 'test todo',
@@ -53,13 +53,13 @@ yarn start
   tags: ['test']
 }
 ```
-- **PUT** - https://backend.pi-top.com/todo-test/v1/todos/:id update a todo. The only field updatable is isDone (bool). You'll need to send a JSON in the request body:
+- **PUT** - https://backend-test.pi-top.com/todo-test/v1/todos/:id update a todo. The only field updatable is isDone (bool). You'll need to send a JSON in the request body:
 ```
 {
   isDone: true
 }
 ```
-- **POST** - https://backend.pi-top.com/todo-test/v1/reset: Reset all todos to initial state.
+- **POST** - https://backend-test.pi-top.com/todo-test/v1/reset: Reset all todos to initial state.
 
 ### Todo object
 - **id** - string - unique ID of call
