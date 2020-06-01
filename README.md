@@ -21,13 +21,14 @@ Show us what you can do in 6 hours tops :) Don't spend too much time on designin
 - Features listed above
 - Use the provided backend
 - React
-- Redux
+- Thoughtful state management
 - Responsive design
 
 ### Bonus/Suggestions
 - Bonus feature above
 - Unit and integration tests
 - CSS modules or alternative
+- Modern react paradigms
 - ... Impress us!
 
 
