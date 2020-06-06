@@ -41,11 +41,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
+        test: /\.tsx?$/,
         use: {
-          loader: "babel-loader",
+          loader: "ts-loader",
         },
+        exclude: /node_modules/,
       },
     ],
   },
