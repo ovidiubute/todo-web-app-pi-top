@@ -1,9 +1,14 @@
-export type TodoModel = {
+export type TodoModel = CommonTodoFields & {
+  description: string;
+  tags: string[];
+};
+
+type CommonTodoFields = {
   id: string;
   createdAt: string;
   title: string;
   priority: string;
-  description: string;
-  tags: string[];
   isDone: boolean;
 };
+
+export type PartialTodoModel = CommonTodoFields;

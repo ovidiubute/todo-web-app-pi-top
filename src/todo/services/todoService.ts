@@ -1,8 +1,14 @@
-import { TodoModel } from "../../types/TodoModel";
+import { PartialTodoModel, TodoModel } from "../../types/TodoModel";
 
-export const getTodos = async (): Promise<TodoModel[]> => {
+export const getPartialTodos = async (): Promise<PartialTodoModel[]> => {
   return fetch(
     "https://backend-test.pi-top.com/todo-test/v1/todos"
+  ).then((data) => data.json());
+};
+
+export const getTodo = async (todoId: string): Promise<TodoModel> => {
+  return fetch(
+    `https://backend-test.pi-top.com/todo-test/v1/todos/${todoId}`
   ).then((data) => data.json());
 };
 

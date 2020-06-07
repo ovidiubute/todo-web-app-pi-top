@@ -1,16 +1,16 @@
 import * as React from "react";
-import { getTodos, setDone } from "../todo/services/todoService";
-import { TodoModel } from "../types/TodoModel";
+import { getPartialTodos, setDone } from "../todo/services/todoService";
+import { PartialTodoModel } from "../types/TodoModel";
 import "./App.less";
 import { Header } from "./Header";
 import { TodoCard } from "./TodoCard";
 
 export const App = () => {
-  const [todos, setTodos] = React.useState<TodoModel[]>([]);
+  const [todos, setTodos] = React.useState<PartialTodoModel[]>([]);
 
   React.useEffect(() => {
     async function loadAllTodos() {
-      const results = await getTodos();
+      const results = await getPartialTodos();
       setTodos(results);
     }
 
@@ -31,7 +31,7 @@ export const App = () => {
                 isDone: e.target.checked,
               });
 
-              const updatedTodos: TodoModel[] = [];
+              const updatedTodos: PartialTodoModel[] = [];
               for (let i = 0; i < todos.length; i++) {
                 if (todos[i].id === t.id) {
                   updatedTodos.push(newTodoData);
