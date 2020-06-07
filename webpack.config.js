@@ -7,9 +7,10 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"],
   },
   output: {
-    filename: "bundle.js",
+    filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "dist"),
   },
+  devtool: "eval-cheap-module-source-map",
   module: {
     rules: [
       {
