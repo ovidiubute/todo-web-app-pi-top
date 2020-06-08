@@ -33,7 +33,7 @@ export const TodoCard = (props: TodoCardProps) => {
   }, [props.id, props.isDone, props.priority, props.createdAt, props.title]);
 
   return (
-    <section className="todoCard">
+    <section className="todoCard" data-testid={`todo-card-${todo.id}`}>
       <div>
         <input
           type="checkbox"

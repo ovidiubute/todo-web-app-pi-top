@@ -85,7 +85,6 @@ export const App = () => {
         </form>
         {todos.map((t) => (
           <TodoCard
-            data-testid={`todo-card-${t.id}`}
             key={t.id}
             {...t}
             onToggle={async (e: React.ChangeEvent<HTMLInputElement>) => {
