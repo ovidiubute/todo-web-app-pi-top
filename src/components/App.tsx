@@ -1,12 +1,20 @@
 import * as React from "react";
-import { getPartialTodos, setDone } from "../todo/services/todoService";
+import {
+  addTodo,
+  getPartialTodos,
+  setDone,
+} from "../todo/services/todoService";
 import { PartialTodoModel } from "../types/TodoModel";
 import "./App.less";
 import { Header } from "./Header";
 import { TodoCard } from "./TodoCard";
+import { TodoTitleInput } from "./TodoTitleInput";
 
 export const App = () => {
   const [todos, setTodos] = React.useState<PartialTodoModel[]>([]);
+  const [newTitle, setNewTitle] = React.useState<string>("");
+  const [formExpanded, setFormExpanded] = React.useState<boolean>(false);
+  const [newDescription, setNewDescription] = React.useState<string>("");
 
   React.useEffect(() => {
     async function loadAllTodos() {
@@ -21,6 +29,47 @@ export const App = () => {
     <div>
       <Header />
       <div className="view">
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+
+            if (!formExpanded) {
+              setFormExpanded(true);
+              return;
+            }
+
+            await addTodo({
+              title: newTitle,
+              description: newDescription,
+              tags: [],
+              priority: 1,
+              createdAt: new Date().toISOString(),
+              isDone: false,
+            });
+
+            const results = await getPartialTodos();
+            setTodos(results);
+            setFormExpanded(false);
+            setNewDescription("");
+            setNewTitle("");
+          }}
+        >
+          <TodoTitleInput
+            onChange={(e) => setNewTitle(e.target.value)}
+            disabled={formExpanded}
+            value={newTitle}
+          />
+          {formExpanded && (
+            <>
+              <textarea
+                onChange={(e) => setNewDescription(e.target.value)}
+                value={newDescription}
+                placeholder={"Can you be more specific?"}
+              ></textarea>
+              <button type="submit">OK</button>
+            </>
+          )}
+        </form>
         {todos.map((t) => (
           <TodoCard
             key={t.id}

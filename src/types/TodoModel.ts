@@ -7,7 +7,8 @@ type CommonTodoFields = {
   id: string;
   createdAt: string;
   title: string;
-  priority: string;
+  // Inconsistent back-end API
+  priority: string | number;
   isDone: boolean;
 };
 

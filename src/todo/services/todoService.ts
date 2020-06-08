@@ -26,3 +26,13 @@ export const setDone = async ({
     }),
   }).then((data) => data.json());
 };
+
+export const addTodo = async (todo: Omit<TodoModel, "id">) => {
+  return fetch("https://backend-test.pi-top.com/todo-test/v1/todos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo),
+  }).then((data) => data.json());
+};
