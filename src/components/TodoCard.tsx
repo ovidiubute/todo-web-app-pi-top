@@ -19,6 +19,19 @@ export const TodoCard = (props: TodoCardProps) => {
   });
   const [expanded, setExpanded] = React.useState<boolean>(false);
 
+  // Update internal state if props change
+  React.useEffect(() => {
+    setTodo({
+      id: props.id,
+      isDone: props.isDone,
+      priority: props.priority,
+      createdAt: props.createdAt,
+      tags: [],
+      description: "",
+      title: props.title,
+    });
+  }, [props.id, props.isDone, props.priority, props.createdAt, props.title]);
+
   return (
     <section className="todoCard">
       <div>

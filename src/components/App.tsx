@@ -89,9 +89,10 @@ export const App = () => {
             key={t.id}
             {...t}
             onToggle={async (e: React.ChangeEvent<HTMLInputElement>) => {
+              const checked = e.currentTarget.checked;
               const newTodoData = await setDone({
                 id: t.id,
-                isDone: e.target.checked,
+                isDone: checked,
               });
 
               const updatedTodos: PartialTodoModel[] = [];
