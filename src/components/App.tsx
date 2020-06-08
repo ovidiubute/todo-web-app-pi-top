@@ -75,6 +75,7 @@ export const App = () => {
               <textarea
                 ref={textareaEl}
                 className="newTodoDescription"
+                data-testid="todo-textarea"
                 onChange={(e) => setNewDescription(e.target.value)}
                 value={newDescription}
                 placeholder={"Can you be more specific?"}

@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
 import * as todoService from "../todo/services/todoService";
 import { App } from "./App";
@@ -45,6 +45,63 @@ describe("Main App", () => {
     await waitFor(() => {
       const sndCard = getByTestId(`todo-card-gsrbE1H3Z`);
       expect(sndCard).toBeInTheDocument();
+    });
+  });
+
+  it("should allow saving a new task", async () => {
+    // Empty initially
+    (todoService.getPartialTodos as jest.Mock).mockResolvedValueOnce([]);
+
+    // Response to save a todo
+    (todoService.addTodo as jest.Mock).mockResolvedValueOnce({
+      id: "gsrbE1H3Z",
+      createdAt: "2018-08-07T11:26:01.463Z",
+      title: "title test",
+      priority: "8",
+      isDone: false,
+    });
+    const { getByPlaceholderText, getByTestId, getByText } = render(<App />);
+
+    // No card initially
+    expect(() => getByTestId(`todo-card-gsrbE1H3Z`)).toThrowError();
+
+    // After we reload, we expect one todo we just saved
+    (todoService.getPartialTodos as jest.Mock).mockResolvedValueOnce([
+      {
+        id: "gsrbE1H3Z",
+        createdAt: "2018-08-07T11:26:01.463Z",
+        title: "title test",
+        priority: "8",
+        isDone: false,
+      },
+    ]);
+
+    // Input - write and submit
+    const titleInputEl = getByPlaceholderText(/What's on your mind?/);
+    fireEvent.change(titleInputEl, {
+      target: {
+        value: "title test",
+      },
+    });
+    fireEvent.submit(titleInputEl);
+
+    // Wait for description text area to appear
+    await waitFor(() => {
+      const textareaEl = getByTestId("todo-textarea");
+      fireEvent.change(textareaEl, {
+        target: {
+          value: "description test",
+        },
+      });
+    });
+
+    // Click OK to save new todo
+    getByText(/OK/i).click();
+
+    // Card is now in document
+    await waitFor(() => {
+      const card = getByTestId(`todo-card-gsrbE1H3Z`);
+      expect(card).toBeInTheDocument();
     });
   });
 });
