@@ -104,4 +104,39 @@ describe("Main App", () => {
       expect(card).toBeInTheDocument();
     });
   });
+
+  it("should allow expanding task to get more details", async () => {
+    (todoService.getPartialTodos as jest.Mock).mockResolvedValueOnce([
+      {
+        id: "zXizI_6T4",
+        createdAt: "2018-08-07T11:25:52.087Z",
+        title: "get milk",
+        priority: "3",
+        isDone: false,
+      },
+    ]);
+    const fullTodo = {
+      id: "zXizI_6T4",
+      createdAt: "2018-08-07T11:25:52.087Z",
+      title: "get milk",
+      description: "buy 1.5l semi-skimmed milk from the supermarket",
+      priority: "3",
+      tags: ["shopping", "dairy"],
+      isDone: false,
+    };
+    (todoService.getTodo as jest.Mock).mockResolvedValueOnce([fullTodo]);
+
+    const { getByText } = render(<App />);
+
+    expect(() => getByText(fullTodo.description)).toThrowError();
+    expect(() => getByText(fullTodo.tags.join(", "))).toThrowError();
+
+    waitFor(() => {
+      const moreLink = getByText(/More.../);
+      fireEvent.click(moreLink);
+
+      expect(getByText(fullTodo.description)).toBeInTheDocument();
+      expect(getByText(fullTodo.tags.join(", "))).toBeInTheDocument();
+    });
+  });
 });
