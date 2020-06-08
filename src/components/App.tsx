@@ -16,6 +16,7 @@ export const App = () => {
   const [formExpanded, setFormExpanded] = React.useState<boolean>(false);
   const [newDescription, setNewDescription] = React.useState<string>("");
 
+  // Load initial data
   React.useEffect(() => {
     async function loadAllTodos() {
       const results = await getPartialTodos();
@@ -30,6 +31,7 @@ export const App = () => {
       <Header />
       <div className="view">
         <form
+          data-testid="todo-new-form"
           onSubmit={async (e) => {
             e.preventDefault();
 
@@ -55,23 +57,35 @@ export const App = () => {
           }}
         >
           <TodoTitleInput
+            data-testid="todo-new-title"
             onChange={(e) => setNewTitle(e.target.value)}
             disabled={formExpanded}
             value={newTitle}
           />
           {formExpanded && (
-            <>
+            <div data-testid="todo-new-form-expanded">
               <textarea
                 onChange={(e) => setNewDescription(e.target.value)}
                 value={newDescription}
                 placeholder={"Can you be more specific?"}
               ></textarea>
               <button type="submit">OK</button>
-            </>
+              <button
+                type="reset"
+                onClick={() => {
+                  setFormExpanded(false);
+                  setNewDescription("");
+                  setNewTitle("");
+                }}
+              >
+                Reset
+              </button>
+            </div>
           )}
         </form>
         {todos.map((t) => (
           <TodoCard
+            data-testid={`todo-card-${t.id}`}
             key={t.id}
             {...t}
             onToggle={async (e: React.ChangeEvent<HTMLInputElement>) => {
