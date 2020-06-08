@@ -1,4 +1,4 @@
-import { PartialTodoModel, TodoModel } from "../../types/TodoModel";
+import { PartialTodoModel, TodoModel } from "../../types/TodoModels";
 
 export const getPartialTodos = async (): Promise<PartialTodoModel[]> => {
   return fetch(

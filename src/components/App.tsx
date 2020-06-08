@@ -4,7 +4,7 @@ import {
   getPartialTodos,
   setDone,
 } from "../todo/services/todoService";
-import { PartialTodoModel } from "../types/TodoModel";
+import { PartialTodoModel } from "../types/TodoModels";
 import "./App.less";
 import { Header } from "./Header";
 import { TodoCard } from "./TodoCard";
@@ -26,12 +26,20 @@ export const App = () => {
     loadAllTodos();
   }, []);
 
+  // Focus on textarea when it renders
+  const textareaEl = React.useRef<HTMLTextAreaElement>(null);
+  React.useEffect(() => {
+    const node = textareaEl?.current;
+    node?.focus();
+  }, [formExpanded]);
+
   return (
     <div>
       <Header />
       <div className="view">
         <form
           data-testid="todo-new-form"
+          className="newTodoForm"
           onSubmit={async (e) => {
             e.preventDefault();
 
@@ -65,21 +73,28 @@ export const App = () => {
           {formExpanded && (
             <div data-testid="todo-new-form-expanded">
               <textarea
+                ref={textareaEl}
+                className="newTodoDescription"
                 onChange={(e) => setNewDescription(e.target.value)}
                 value={newDescription}
                 placeholder={"Can you be more specific?"}
               ></textarea>
-              <button type="submit">OK</button>
-              <button
-                type="reset"
-                onClick={() => {
-                  setFormExpanded(false);
-                  setNewDescription("");
-                  setNewTitle("");
-                }}
-              >
-                Reset
-              </button>
+              <div>
+                <button type="submit" className="button">
+                  OK
+                </button>
+                <button
+                  className="button"
+                  type="reset"
+                  onClick={() => {
+                    setFormExpanded(false);
+                    setNewDescription("");
+                    setNewTitle("");
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
             </div>
           )}
         </form>

@@ -1,5 +1,127 @@
+body {
+  margin: 0;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-size: 14px;
+  color: #24292e;
+  background-color: #9b93880f;
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
+}
+
 #app {
   .view {
     padding: 20px;
+  }
+
+  .todoTitleInput {
+    width: 50vw;
+  }
+
+  .newTodoDescription {
+    width: 50vw;
+    min-height: 72px;
+    padding: 0px 8px;
+    line-height: 16px;
+    color: #24292e;
+    vertical-align: middle;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
+
+    &::placeholder {
+      color: #6a737d;
+    }
+
+    &:focus {
+      border-color: #2188ff;
+      outline: none;
+      box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075),
+        0 0 0 0.2em rgba(3, 102, 214, 0.3);
+    }
+  }
+
+  .button {
+    min-height: 36px;
+    min-width: 82px;
+    padding: 10px 12px;
+    text-transform: none;
+    line-height: 16px;
+    cursor: pointer;
+    background-color: #e6ebf1;
+    background-size: 110% 110%;
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    background-position: -0.5em;
+    color: #24292e;
+    user-select: none;
+    border-radius: 0.25em;
+    border: 1px solid rgba(27, 31, 35, 0.2);
+
+    // TODO Breaking componentization here
+    margin-right: 8px;
+
+    &:hover {
+      text-decoration: none;
+      background-repeat: repeat-x;
+      background-color: #e6ebf1;
+      background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+      background-position: -0.5em;
+      border-color: rgba(27, 31, 35, 0.35);
+    }
+
+    &[disabled] {
+      pointer-events: none;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2em rgba(3, 102, 214, 0.3);
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &:active {
+      box-shadow: inset 0 0.15em 0.3em rgba(27, 31, 35, 0.15);
+      background-color: #e9ecef;
+      border-color: rgba(27, 31, 35, 0.35);
+    }
+  }
+
+  .newTodoForm {
+    * {
+      margin-bottom: 8px;
+    }
+  }
+
+  .todoCard {
+    width: 50vw;
+    border: 1px solid rgb(225, 228, 232);
+    padding: 8px;
+
+    margin-bottom: 8px;
+
+    :last-child {
+      margin-bottom: 0;
+    }
   }
 }

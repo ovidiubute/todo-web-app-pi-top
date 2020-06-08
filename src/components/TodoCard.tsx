@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getTodo } from "../todo/services/todoService";
-import { PartialTodoModel, TodoModel } from "../types/TodoModel";
+import { PartialTodoModel, TodoModel } from "../types/TodoModels";
 import "./TodoCard.less";
 
 export type TodoCardProps = PartialTodoModel & {
@@ -40,8 +40,6 @@ export const TodoCard = (props: TodoCardProps) => {
           checked={todo.isDone}
           onChange={props.onToggle}
         />
-      </div>
-      <div>
         <label>{todo.title}</label>
       </div>
       <a
