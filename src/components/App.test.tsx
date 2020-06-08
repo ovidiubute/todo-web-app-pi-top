@@ -28,7 +28,7 @@ describe("Main App", () => {
       },
     ]);
 
-    const { getByPlaceholderText, getByText, getByTestId } = render(<App />);
+    const { getByPlaceholderText, getByTestId } = render(<App />);
 
     // Input
     const titleInputEl = getByPlaceholderText(/What's on your mind?/);
